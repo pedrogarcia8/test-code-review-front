@@ -4,7 +4,7 @@ interface Props {
   style: CSSProperties;
   text: string;
   value: number;
-  fn: (value: number) => void;
+  fn: (_value: number) => void;
   fnValue: number;
 }
 
