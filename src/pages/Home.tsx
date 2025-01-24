@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { CSSProperties, FC, useEffect, useState } from 'react';
 
 const Home: FC = () => {
   const [count, setCount] = useState<number>(0);
@@ -25,25 +25,36 @@ const Home: FC = () => {
     handleLoopNumber(2);
   }, [loopNumber]);
 
+  const boxStyle: CSSProperties = { 
+    display: 'flex', 
+    justifyContent: 'center', 
+    backgroundColor: '#f0f0f0', 
+    padding: '20px', 
+    borderRadius: '5px', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    marginTop: '20px' 
+  };
+
   return (
     <div style={{ padding: '20px', color: '#000' }}>
       <h1>Home</h1>
       <p>Teste</p>
-      <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '5px', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={boxStyle}>
         <p>Contagem: {count}</p>
         <div style={{ display: 'flex', gap: '10px' }}>
           <button onClick={() => { handleIncrement(count); }}>Aumentar</button>
           <button onClick={() => { setCount(count - 1); }}>Diminuir</button>
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '5px', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
+      <div style={boxStyle}>
         <p>Número pares: {evenNumbers}</p>
         <div style={{ display: 'flex', gap: '10px' }}>
           <button onClick={() => {handleEvenNumbers(2); }}>Aumentar</button>
           <button onClick={() => {handleEvenNumbers(-2); }}>Diminuir</button>
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '5px', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
+      <div style={boxStyle}>
         <p>Loop: {loopNumber}</p>
       </div> 
     </div>
