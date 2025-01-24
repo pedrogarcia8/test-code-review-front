@@ -1,6 +1,6 @@
 import { CSSProperties, FC, useEffect, useState } from 'react';
 
-type Props = {
+interface Props {
   style: CSSProperties;
   text: string;
   value: number;
