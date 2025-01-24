@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Home: React.FC = () => {
-  const [count, setCount] = React.useState(0);
-  const [evenNumbers, setEvenNumbers] = React.useState(0);
+  const [count, setCount] = React.useState<number>(0);
+  const [evenNumbers, setEvenNumbers] = React.useState<number>(0);
 
   return (
     <div style={{ padding: '20px', color: '#000' }}>
