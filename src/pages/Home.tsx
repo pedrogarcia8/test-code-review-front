@@ -5,11 +5,9 @@ const Home: FC = () => {
   const [hoverCount, setHoverCount] = useState<number>(0);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-  // Simulação de dados para gráficos
   const [data, setData] = useState<number[]>([]);
 
   useEffect(() => {
-    // Gera dados aleatórios ao iniciar
     const generateData = () => {
       const newData = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
       setData(newData);
@@ -29,7 +27,6 @@ const Home: FC = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  // Estilos dinâmicos
   const containerStyle: React.CSSProperties = {
     padding: '20px',
     backgroundColor: isDarkMode ? '#333' : '#f4f4f4',
