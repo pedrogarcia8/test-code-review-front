@@ -1,6 +1,6 @@
 import { CSSProperties, FC, useEffect, useState } from 'react';
 
-type FnType = (_: number) => void;
+type FnType = (value: number) => void;
 interface Props {
   style: CSSProperties;
   text: string;
