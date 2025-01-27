@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, CSSProperties } from 'react';
 
 const Home: FC = () => {
   const [count, setCount] = useState<number>(0);
@@ -27,7 +27,7 @@ const Home: FC = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  const containerStyle: React.CSSProperties = {
+  const containerStyle: CSSProperties = {
     padding: '20px',
     backgroundColor: isDarkMode ? '#333' : '#f4f4f4',
     color: isDarkMode ? '#fff' : '#000',
@@ -39,7 +39,7 @@ const Home: FC = () => {
     transition: 'background-color 0.3s ease, color 0.3s ease',
   };
 
-  const buttonStyle: React.CSSProperties = {
+  const buttonStyle: CSSProperties = {
     padding: '10px 20px',
     backgroundColor: isDarkMode ? '#444' : '#007BFF',
     color: '#fff',
@@ -49,14 +49,14 @@ const Home: FC = () => {
     transition: 'background-color 0.3s ease',
   };
 
-  const statsStyle: React.CSSProperties = {
+  const statsStyle: CSSProperties = {
     display: 'flex',
     justifyContent: 'space-between',
     width: '100%',
     maxWidth: '500px',
   };
 
-  const barChartStyle: React.CSSProperties = {
+  const barChartStyle: CSSProperties = {
     display: 'flex',
     alignItems: 'flex-end',
     gap: '5px',
@@ -67,7 +67,7 @@ const Home: FC = () => {
     borderLeft: '2px solid #ccc',
   };
 
-  const barStyle = (value: number): React.CSSProperties => ({
+  const barStyle = (value: number): CSSProperties => ({
     width: '10%',
     height: `${value}%`,
     backgroundColor: isDarkMode ? '#FF6347' : '#4CAF50',
