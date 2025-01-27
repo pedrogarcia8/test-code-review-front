@@ -1,6 +1,6 @@
 import { CSSProperties, FC, useEffect, useState } from 'react';
 
-type FnType = (value?: number) => void;
+type FnType = (_: number) => void;
 interface Props {
   style: CSSProperties;
   text: string;
@@ -26,14 +26,12 @@ const Home: FC = () => {
   const [evenNumbers, setEvenNumbers] = useState<number>(0);
   const [loopNumber, setLoopNumber] = useState<number>(0);
 
-  const handleIncrement = (value?: number): void => {
-    if(value)
-      setCount(count + value);
+  const handleIncrement = (value: number): void => {
+    setCount(count + value);
   };
 
-  const handleEvenNumbers = (value?: number): void => {
-    if(value)
-      setEvenNumbers(evenNumbers + value);
+  const handleEvenNumbers = (value: number): void => {
+    setEvenNumbers(evenNumbers + value);
   };
 
   const handleLoopNumber = (value: number): void => {
