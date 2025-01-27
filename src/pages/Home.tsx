@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 
-const Home: FC = function Home(){
+const Home: FC = () => {
   const [count, setCount] = useState<number>(0);
   const [hoverCount, setHoverCount] = useState<number>(0);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
