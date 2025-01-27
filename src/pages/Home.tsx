@@ -1,10 +1,12 @@
 import { CSSProperties, FC, useEffect, useState } from 'react';
 
+type FnType = (value: number) => void;
+
 interface Props {
   style: CSSProperties;
   text: string;
   value: number;
-  fn: (_value: number) => void;
+  fn: FnType;
   fnValue: number;
 }
 
