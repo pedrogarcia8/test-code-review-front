@@ -4,7 +4,8 @@ interface Props {
   style: CSSProperties;
   text: string;
   value: number;
-  fn: (_value: number) => void;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  fn: (value: number) => void;
   fnValue: number;
 }
 
