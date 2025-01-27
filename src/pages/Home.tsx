@@ -1,71 +1,107 @@
-import { CSSProperties, FC, useEffect, useState } from 'react';
-
-type FnType = (value: number) => void;
-interface Props {
-  style: CSSProperties;
-  text: string;
-  value: number;
-  fn: FnType;
-  fnValue: number;
-}
-
-const Div: FC<Props> = ({ style, text, value, fn, fnValue }) => {
-  return (
-    <div style={style}>
-      <p>{text} {value}</p>
-      <div style={{ display: 'flex', gap: '10px' }}>
-        <button onClick={() => {fn(fnValue); }}>Aumentar</button>
-        <button onClick={() => {fn(-fnValue); }}>Diminuir</button>
-      </div>
-    </div>
-  )
-}
+import React, { FC, useState, useEffect } from 'react';
 
 const Home: FC = () => {
   const [count, setCount] = useState<number>(0);
-  const [evenNumbers, setEvenNumbers] = useState<number>(0);
-  const [loopNumber, setLoopNumber] = useState<number>(0);
+  const [hoverCount, setHoverCount] = useState<number>(0);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-  const handleIncrement = (value: number): void => {
-    setCount(count + value);
-  };
-
-  const handleEvenNumbers = (value: number): void => {
-    setEvenNumbers(evenNumbers + value);
-  };
-
-  const handleLoopNumber = (value: number): void => {
-    for (let i = 0; i < 100; i++) {
-      for (let j = 0; j < 100; j++) {
-        setLoopNumber(value * i * j);
-      }
-    }
-  };
+  // Simulação de dados para gráficos
+  const [data, setData] = useState<number[]>([]);
 
   useEffect(() => {
-    handleLoopNumber(2);
-  }, [loopNumber]);
+    // Gera dados aleatórios ao iniciar
+    const generateData = () => {
+      const newData = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
+      setData(newData);
+    };
+    generateData();
+  }, []);
 
-  const boxStyle: CSSProperties = { 
-    display: 'flex', 
-    justifyContent: 'center', 
-    backgroundColor: '#f0f0f0', 
-    padding: '20px', 
-    borderRadius: '5px', 
-    flexDirection: 'column', 
-    alignItems: 'center', 
-    marginTop: '20px' 
+  const handleButtonClick = () => {
+    setCount(count + 1);
   };
 
+  const handleHover = () => {
+    setHoverCount(hoverCount + 1);
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  // Estilos dinâmicos
+  const containerStyle: React.CSSProperties = {
+    padding: '20px',
+    backgroundColor: isDarkMode ? '#333' : '#f4f4f4',
+    color: isDarkMode ? '#fff' : '#000',
+    borderRadius: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '20px',
+    transition: 'background-color 0.3s ease, color 0.3s ease',
+  };
+
+  const buttonStyle: React.CSSProperties = {
+    padding: '10px 20px',
+    backgroundColor: isDarkMode ? '#444' : '#007BFF',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  };
+
+  const statsStyle: React.CSSProperties = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    maxWidth: '500px',
+  };
+
+  const barChartStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'flex-end',
+    gap: '5px',
+    height: '200px',
+    width: '100%',
+    maxWidth: '500px',
+    borderBottom: '2px solid #ccc',
+    borderLeft: '2px solid #ccc',
+  };
+
+  const barStyle = (value: number): React.CSSProperties => ({
+    width: '10%',
+    height: `${value}%`,
+    backgroundColor: isDarkMode ? '#FF6347' : '#4CAF50',
+    transition: 'height 0.3s ease, background-color 0.3s ease',
+  });
+
   return (
-    <div style={{ padding: '20px', color: '#000' }}>
-      <h1>Home</h1>
-      <p>Teste</p>
-      <Div style={boxStyle} text='Contagem: ' value={count} fn={handleIncrement} fnValue={1} />
-      <Div style={boxStyle} text='Números pares: ' value={evenNumbers} fn={handleEvenNumbers} fnValue={2} />
-      <div style={boxStyle}>
-        <p>Loop: {loopNumber}</p>
-      </div> 
+    <div style={containerStyle}>
+      <h1>Dashboard Interativo</h1>
+      <div style={statsStyle}>
+        <div>
+          <h3>Clicks</h3>
+          <p>{count}</p>
+        </div>
+        <div>
+          <h3>Hovers</h3>
+          <p>{hoverCount}</p>
+        </div>
+      </div>
+      <button style={buttonStyle} onClick={handleButtonClick} onMouseEnter={handleHover}>
+        Clique ou Passe o Mouse
+      </button>
+      <button style={buttonStyle} onClick={toggleDarkMode}>
+        {isDarkMode ? 'Modo Claro' : 'Modo Escuro'}
+      </button>
+      <h3>Gráfico de Dados</h3>
+      <div style={barChartStyle}>
+        {data.map((value, index) => (
+          <div key={index} style={barStyle(value)} title={`Valor: ${value}`} />
+        ))}
+      </div>
     </div>
   );
 };
