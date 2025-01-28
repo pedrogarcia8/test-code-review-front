@@ -1,5 +1,26 @@
 import { FC, useState, useEffect, CSSProperties } from 'react';
 
+const AccessibilityTest: FC = () => {
+  return (
+    <div>
+      {/* Erro 1: Imagem sem texto alternativo */}
+      <img src="example.jpg" />
+
+      {/* Erro 2: Falta de `role` em elemento interativo */}
+      <div onClick={() => alert("Div interativa sem role")}>Clique aqui</div>
+
+      {/* Erro 3: Uso de atributos de aria inválidos */}
+      <button aria-hidden="true">Botão Inacessível</button>
+
+      {/* Erro 4: Label faltando em elemento de formulário */}
+      <input type="text" id="input-without-label" />
+
+      {/* Erro 5: Links sem texto descritivo */}
+      <a href="#">Clique</a>
+    </div>
+  );
+};
+
 const Home: FC = () => {
   const [count, setCount] = useState<number>(0);
   const [hoverCount, setHoverCount] = useState<number>(0);
@@ -99,6 +120,7 @@ const Home: FC = () => {
           <div key={index} style={barStyle(value)} title={`Valor: ${value}`} />
         ))}
       </div>
+      <AccessibilityTest />
     </main>
   );
 };
