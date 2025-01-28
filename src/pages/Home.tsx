@@ -88,7 +88,7 @@ const Home: FC = () => {
         </div>
       </div>
       <button style={buttonStyle} onClick={handleButtonClick} onMouseEnter={handleHover}>
-        Clique ou Passe o Mouse
+        Clique ou passe o mouse
       </button>
       <button style={buttonStyle} onClick={toggleDarkMode}>
         {isDarkMode ? 'Modo Claro' : 'Modo Escuro'}
