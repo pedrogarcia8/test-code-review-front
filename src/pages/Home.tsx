@@ -75,7 +75,7 @@ const Home: FC = () => {
   });
 
   return (
-    <div style={containerStyle}>
+    <main style={containerStyle}>
       <h1>Dashboard Interativo</h1>
       <div style={statsStyle}>
         <div>
@@ -99,7 +99,7 @@ const Home: FC = () => {
           <div key={index} style={barStyle(value)} title={`Valor: ${value}`} />
         ))}
       </div>
-    </div>
+    </main>
   );
 };
 
